@@ -1,0 +1,17 @@
+{
+  "name": "kms-hmac-lambda",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-kms": "^3.830.0",
+    "@aws-sdk/client-sts": "^3.835.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.5"
+  }
+}
