@@ -1,6 +1,10 @@
 name: Show Working Directory
 on: [push]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   display-working-dir-info-ubuntu:
     runs-on: ubuntu-latest
