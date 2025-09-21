@@ -18,6 +18,9 @@ jobs:
           echo $GITHUB_WORKSPACE
   display-working-dir-info-windows:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Display Working Directory
         run: |
