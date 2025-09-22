@@ -1,7 +1,16 @@
 name: Checkout
-on: [pull_request]
+on: [push]
 
 jobs:
+  checkout-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files before checkout
+        run: ls -a
+      - name: checkout with action
+        uses: actions/checkout@v1
+      - name: List Files after checkout
+        run: ls -a
   checkout-and-display-files:
     runs-on: ubuntu-latest
     steps:
