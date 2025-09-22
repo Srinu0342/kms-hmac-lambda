@@ -1,0 +1,10 @@
+name: Manually Dispatchable Workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  display_github_ref:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo git ref
+        run: echo $GITHUB_REF
