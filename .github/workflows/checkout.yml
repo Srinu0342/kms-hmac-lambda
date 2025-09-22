@@ -1,5 +1,11 @@
 name: Checkout
-on: [push]
+on:
+  push:
+  pull_request:
+    types: ['opened']
+    branches:
+      - main
+
 
 jobs:
   checkout-action:
