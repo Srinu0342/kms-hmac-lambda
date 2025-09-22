@@ -1,7 +1,7 @@
 name: Dependent Workflow Run
 on:
   workflow_run:
-    workflows: [Checkout]
+    workflows: [Checkout Workflow]
     types: [completed]
 jobs:
   display-workflow-cal:
