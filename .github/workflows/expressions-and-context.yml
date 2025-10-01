@@ -12,8 +12,8 @@ jobs:
       - name: test context
         id: context
         run: |
-          echo '${{toJSON(github)}}'
-          echo '${{toJSON(steps)}}'
-          echo '${{toJSON(job)}}'
-          echo '${{toJSON(secrets)}}'
-          echo '${{toJSON(runner)}}'
+          echo 'github: ${{toJSON(github)}}'
+          echo 'steps: ${{toJSON(steps)}}'
+          echo 'job: ${{toJSON(job)}}'
+          echo 'secrets: ${{toJSON(secrets)}}'
+          echo 'runner: ${{toJSON(runner)}}'
