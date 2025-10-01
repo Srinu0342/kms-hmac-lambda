@@ -1,0 +1,13 @@
+name: Mark PR as Stale
+on:
+  schedule:
+    - cron: "5 4 * * *"
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8
+        with:
+          stale-issue-message: "This PR is stale"
+          days-before-stale: 5
+          days-before-close: 30
