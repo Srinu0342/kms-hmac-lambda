@@ -1,4 +1,5 @@
 name: Status Check
+run-name: Status Check on push
 on: [push]
 jobs:
   job-1:
@@ -9,7 +10,7 @@ jobs:
       - name: Runs on Failure
         if: failure()
         run: echo "Running the failure step"
-      - name: Runs on Failure
+      - name: Runs on Success
         # this is default behaviour
         if: success()
         run: echo 'Runs on Success'
