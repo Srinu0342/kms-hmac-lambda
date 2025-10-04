@@ -1,0 +1,14 @@
+name: Matrix
+on: [workflow_dispatch]
+jobs:
+  node-metrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_versions: [12, 14, 16]
+    steps:
+      - run: node -v
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_versions }}
+      - run: node -v
