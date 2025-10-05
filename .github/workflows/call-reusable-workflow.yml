@@ -1,0 +1,11 @@
+name: Call Reusable Workflow
+on: [workflow_dispatch]
+jobs:
+  call-reusable-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Reusable Workflow
+        uses: ./.github/workflows/reusable-workflow.yml
+        id: get-date
+      - name: Show date from reusable workflow
+        run: echo "The date is ${{ steps.get-date.outputs.date }}"
