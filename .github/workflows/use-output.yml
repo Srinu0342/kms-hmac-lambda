@@ -1,0 +1,36 @@
+name: Use Output
+on:
+  workflow_dispatch:
+    inputs:
+      node-versions:
+        description: 'Node.js versions to test against'
+        required: true
+        default: '14,16,18'
+        type: string
+jobs:
+  prepare-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      node-versions: ${{steps.set-node-versions.outputs.result}}
+    steps:
+      - name: Set up node version matrix
+        uses: actions/github-script@v6
+        id: set-node-versions
+        with:
+          script: "return { versions: inputs['node-versions'].split(',')}"
+          result-encoding: json
+      - name: Output matrix
+        run: echo '${{ steps.set-node-versions.outputs.result }}'
+  prepare-node-versions:
+    needs: prepare-matrix
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_versions: ${{fromJson(needs.prepare-matrix.outputs.node-versions)}}
+    steps:
+      - name: Set up Node.js versions from input
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_versions }}
+      - name: Check Node.js version
+        run: node -v
