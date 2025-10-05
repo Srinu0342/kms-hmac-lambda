@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_versions: ${{needs.prepare-matrix.outputs.node-versions}}
+        node_versions: ${{fromJson(needs.prepare-matrix.outputs.node-versions).versions}}
     steps:
       - name: Set up Node.js versions from input
         uses: actions/setup-node@v3
