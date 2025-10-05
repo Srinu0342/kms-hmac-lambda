@@ -17,7 +17,7 @@ jobs:
         uses: actions/github-script@v6
         id: set-node-versions
         with:
-          script: "return { versions: inputs['node-versions'].split(',')}"
+          script: "return { versions: context.payload.inputs['node-versions'].split(',')}"
           result-encoding: json
       - name: Output matrix
         run: echo '${{ steps.set-node-versions.outputs.result }}'
