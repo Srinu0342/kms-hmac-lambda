@@ -2,10 +2,10 @@ name: Call Reusable Workflow
 on: [workflow_dispatch]
 jobs:
   call-reusable-workflow:
+    uses: ./.github/workflows/reusable-workflow.yml
+  using-reusale-output:
     runs-on: ubuntu-latest
+    needs: call-reusable-workflow
     steps:
-      - name: Call Reusable Workflow
-        uses: ./.github/workflows/reusable-workflow.yml
-        id: get-date
-      - name: Show date from reusable workflow
-        run: echo "The date is ${{ steps.get-date.outputs.date }}"
+      - name: Use output from reusable workflow
+        run: echo "The date from reusable workflow is ${{ needs.call-reusable-workflow.outputs.date }}"
