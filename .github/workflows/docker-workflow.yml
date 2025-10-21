@@ -1,0 +1,22 @@
+name: Docker Workflow
+on: workflow_dispatch
+
+jobs:
+  docker-job:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20.3-alpine3.17
+      env:
+        NODE_ENV: production
+    steps:
+      - name: Check Node.js Version
+        run: |
+          node -v
+          cat /etc/os-release
+      - name: Log ENV Variable
+        run: echo $NODE_ENV
+      - name: List Files in Working Directory
+        run: |
+          ls -la
+          echo "Current Working Directory: $PWD"
+          echo "GitHub Workspace: $GITHUB_WORKSPACE"
