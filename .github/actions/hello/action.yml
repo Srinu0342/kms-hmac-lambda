@@ -11,4 +11,4 @@ outputs:
     description: 'The time the greeting was made'
 runs:
   using: 'node20'
-  main: 'output/index.js'
+  main: 'output/index.cjs'
