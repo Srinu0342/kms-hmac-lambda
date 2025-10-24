@@ -16,6 +16,9 @@ jobs:
   simple-private-action:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Simple Private JS Action
         id: private-greet
         uses: ./.github/actions/hello
