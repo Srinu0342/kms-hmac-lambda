@@ -1,0 +1,14 @@
+name: Hello World Action
+author: Subhadip Hazra
+description: A simple GitHub Action that prints "Hello, World!" to the console.
+inputs:
+  guest_name:
+    description: 'Who to greet'
+    required: false
+    default: 'World'
+outputs:
+  greeting_time:
+    description: 'The time the greeting was made'
+runs:
+  using: 'node20'
+  main: 'output/index.js'

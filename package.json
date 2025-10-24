@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js"
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js",
+    "build:hello": "esbuild .github/actions/hello/index.ts --bundle --platform=node --target=node20 --outfile=.github/actions/hello/output/index.js"
   },
   "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
     "@aws-sdk/client-kms": "^3.830.0",
     "@aws-sdk/client-sts": "^3.835.0"
   },

@@ -12,3 +12,14 @@ jobs:
           who-to-greet: Srinu
       - name: Log Greeting Time
         run: echo "${{ steps.greet.outputs.time }}"
+
+  simple-private-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple Private JS Action
+        id: private-greet
+        uses: ./.github/actions/hello
+        with:
+          guest_name: Subhadip
+      - name: Log Private Greeting Time
+        run: echo "${{ steps.private-greet.outputs.greeting_time }}"
