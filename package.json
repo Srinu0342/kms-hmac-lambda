@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js",
-    "build:hello": "esbuild .github/actions/hello/index.ts --bundle --platform=node --target=node20 --outfile=.github/actions/hello/output/index.js"
+    "build:hello": "esbuild .github/actions/hello/index.ts --bundle --platform=node --target=node20 --outfile=.github/actions/hello/output/index.cjs"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
