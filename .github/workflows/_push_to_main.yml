@@ -2,6 +2,8 @@ name: Push To Main
 on:
   push:
     branches: [ main ]
+permissions:
+  contents: write
 jobs:
   setup:
     runs-on: ubuntu-latest
