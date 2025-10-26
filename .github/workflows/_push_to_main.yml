@@ -36,3 +36,26 @@ jobs:
           path: '**/node_modules'
       - name: Run Tests
         run: npm run test
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          path: '**/node_modules'
+      - name: Build Project
+        run: npm run build
+  release:
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        run: echo "Releasing new version..."
