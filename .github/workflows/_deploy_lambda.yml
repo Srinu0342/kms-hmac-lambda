@@ -1,0 +1,10 @@
+name: Deploy Lambda Function
+on: [workflow_dispatch]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to AWS Lambda
+        run: |
+          echo "Deploying to AWS Lambda..."
+          # Add your deployment commands here
