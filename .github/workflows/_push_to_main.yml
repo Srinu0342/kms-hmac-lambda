@@ -57,5 +57,7 @@ jobs:
     needs: [test, build]
     runs-on: ubuntu-latest
     steps:
-      - name: Create Release
-        run: echo "Releasing new version..."
+      - name: Create Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

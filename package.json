@@ -14,10 +14,16 @@
     "@aws-sdk/client-sts": "^3.835.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.0",
+    "@semantic-release/release-notes-generator": "^14.1.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",
     "esbuild": "^0.25.11",
     "jest": "^30.2.0",
+    "semantic-release": "^25.0.1",
     "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
