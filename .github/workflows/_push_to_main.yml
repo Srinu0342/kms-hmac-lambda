@@ -1,0 +1,38 @@
+name: Push To Main
+on:
+  push:
+    branches: [ main ]
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          path: '**/node_modules'
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          path: '**/node_modules'
+      - name: Run Tests
+        run: npm test

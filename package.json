@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js",
-    "build:hello": "esbuild .github/actions/hello/index.ts --bundle --platform=node --target=node20 --outfile=.github/actions/hello/output/index.cjs"
+    "build:hello": "esbuild .github/actions/hello/index.ts --bundle --platform=node --target=node20 --outfile=.github/actions/hello/output/index.cjs",
+    "test": "jest"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
@@ -13,8 +14,12 @@
     "@aws-sdk/client-sts": "^3.835.0"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",
-    "esbuild": "^0.20.0",
+    "esbuild": "^0.25.11",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
 }
