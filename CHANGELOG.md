@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.3.0...v1.4.0) (2025-11-02)
+
+
+### Features
+
+* force semantic release ([9c39b58](https://github.com/Srinu0342/kms-hmac-lambda/commit/9c39b5872499479b9bf1b80194a3d66aa1f491c9))
+
 # [1.3.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.2.0...v1.3.0) (2025-11-02)
 
 
