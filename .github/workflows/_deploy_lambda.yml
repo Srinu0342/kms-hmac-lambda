@@ -10,11 +10,53 @@ on:
   release:
     types: [ created ]
 
-run-name: Deploying ${{ github.ref_name || inputs.tag || 'latest' }}
+run-name: Deploying ${{ inputs.tag || github.event.release.tag_name || 'latest' }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Determine tag
+      run: |
+        echo "ref_name=$(inputs.tag || github.event.release.tag_name || 'latest')" >> $GITHUB_OUTPUT
+      id: determine-tag
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ steps.determine-tag.outputs.ref_name }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
     - name: Deploy to AWS Lambda
       run: |
-        echo "Deploying to AWS Lambda... Plz"
+        FUNCTION_NAME="kms-hmac-function"
+        ZIP_FILE="function.zip"
+
+        # Create a zip file with the Lambda function code
+        cd dist
+        zip -r ../$ZIP_FILE index.js
+        cd ..
+
+        # Update Lambda function code
+        aws lambda update-function-code \
+          --function-name $FUNCTION_NAME \
+          --zip-file fileb://$ZIP_FILE \
+          --region ${{ secrets.AWS_REGION }}
+
+        echo "✅ Successfully deployed ${{ steps.determine-tag.outputs.ref_name }} to Lambda function: $FUNCTION_NAME"
