@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.4.0...v1.5.0) (2025-11-02)
+
+
+### Features
+
+* deploy versions automatically ([c44b16c](https://github.com/Srinu0342/kms-hmac-lambda/commit/c44b16ce391da9f1b8e33bbdbfe48b8d81166d1a))
+
 # [1.4.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.3.0...v1.4.0) (2025-11-02)
 
 
