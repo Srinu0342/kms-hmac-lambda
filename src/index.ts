@@ -16,6 +16,7 @@ const crossAccountKeyAlias = "collies-usecase";
 const CROSSS_ACCOUNT_REGION = "ap-south-1";
 
 export const handler = async (event: any): Promise<any> => {
+  console.log({ event: JSON.stringify(event, null, 2), msg: "Event received" });
   try {
     const body = event.body ? JSON.parse(event.body) : {};
     const message = body?.message;
