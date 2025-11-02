@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.6.0...v1.7.0) (2025-11-02)
+
+
+### Features
+
+* push new code to aws ([0d0cbca](https://github.com/Srinu0342/kms-hmac-lambda/commit/0d0cbca0df7ee0cd76eebc81ad93d71c699eddd5))
+
 # [1.6.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.5.0...v1.6.0) (2025-11-02)
 
 
