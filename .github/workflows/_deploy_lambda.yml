@@ -1,10 +1,20 @@
 name: Deploy Lambda Function
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The tag to deploy'
+        required: true
+        default: 'latest'
+        type: string
+  release:
+    types: [ created ]
+
+run-name: Deploying ${{ github.ref_name || inputs.tag || 'latest' }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to AWS Lambda
-        run: |
-          echo "Deploying to AWS Lambda..."
-          # Add your deployment commands here
+    - name: Deploy to AWS Lambda
+      run: |
+        echo "Deploying to AWS Lambda... Plz"
