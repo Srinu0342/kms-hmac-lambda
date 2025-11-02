@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.0.0...v1.1.0) (2025-11-02)
+
+
+### Features
+
+* log versions in deployment ([eccd314](https://github.com/Srinu0342/kms-hmac-lambda/commit/eccd314f8b2ad0fdbee284fbc5c0ac96cf38837e))
+
 # 1.0.0 (2025-10-26)
 
 
