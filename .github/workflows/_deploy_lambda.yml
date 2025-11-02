@@ -9,15 +9,19 @@ on:
         type: string
   release:
     types: [ created ]
+  push:
+    tags:
+    - 'v*'
+    - '*.*.*'
 
-run-name: Deploying ${{ inputs.tag || github.event.release.tag_name || 'latest' }}
+run-name: Deploying ${{ inputs.tag || github.event.release.tag_name || github.ref_name || 'latest' }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Determine tag
       run: |
-        echo "ref_name=$(inputs.tag || github.event.release.tag_name || 'latest')" >> $GITHUB_OUTPUT
+        echo "ref_name=$(inputs.tag || github.event.release.tag_name || github.ref_name || 'latest')" >> $GITHUB_OUTPUT
       id: determine-tag
 
     - name: Checkout code
