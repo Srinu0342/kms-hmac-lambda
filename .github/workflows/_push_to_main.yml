@@ -8,69 +8,69 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-      - name: Install dependencies
-        run: npm install
-      - name: Cache Node Modules
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          path: '**/node_modules'
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+    - name: Install dependencies
+      run: npm install
+    - name: Cache Node Modules
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        path: '**/node_modules'
   test:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-      - name: Restore Node Modules Cache
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          path: '**/node_modules'
-      - name: Run Tests
-        run: npm run test
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+    - name: Restore Node Modules Cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        path: '**/node_modules'
+    - name: Run Tests
+      run: npm run test
   build:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-      - name: Restore Node Modules Cache
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          path: '**/node_modules'
-      - name: Build Project
-        run: npm run build
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+    - name: Restore Node Modules Cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        path: '**/node_modules'
+    - name: Build Project
+      run: npm run build
   release:
-    needs: [test, build]
+    needs: [ test, build ]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-      - name: Restore Node Modules Cache
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          path: '**/node_modules'
-      - name: Create Semantic Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+    - name: Restore Node Modules Cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        path: '**/node_modules'
+    - name: Create Semantic Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+      run: npx semantic-release
