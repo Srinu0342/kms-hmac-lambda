@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.2.0...v1.3.0) (2025-11-02)
+
+
+### Features
+
+* remove console log ([d1bd940](https://github.com/Srinu0342/kms-hmac-lambda/commit/d1bd9408681a5117f2b594cfcb2d6322b38a50bc))
+
 # [1.1.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.0.0...v1.1.0) (2025-11-02)
 
 
