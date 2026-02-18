@@ -48,6 +48,8 @@ export const handler = async (event: any): Promise<any> => {
         };
       }
 
+      console.log({ billData });
+
       return {
         statusCode: 200,
         body: JSON.stringify(billData)
