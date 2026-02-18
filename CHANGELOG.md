@@ -1,3 +1,11 @@
+# [1.8.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.7.0...v1.8.0) (2026-02-18)
+
+
+### Features
+
+* explore bill data ([cd26a7a](https://github.com/Srinu0342/kms-hmac-lambda/commit/cd26a7ab351cca61fe15b380164a2ba18c9b4cc5))
+* skip all tests ([61b4597](https://github.com/Srinu0342/kms-hmac-lambda/commit/61b45973204936f5807b4d91af3c8a1ff01b70bc))
+
 # [1.7.0](https://github.com/Srinu0342/kms-hmac-lambda/compare/v1.6.0...v1.7.0) (2025-11-02)
 
 
