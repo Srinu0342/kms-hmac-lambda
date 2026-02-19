@@ -4,9 +4,13 @@ import {
   DecryptCommand,
 } from "@aws-sdk/client-kms";
 
-import { PDFParse } from 'pdf-parse';
+import { writeFileSync, readFileSync } from "node:fs";
+import { exec } from "node:child_process";
+import { promisify } from "node:util";
 
 import { createHmac } from "node:crypto";
+
+const execAsync = promisify(exec);
 
 const REGION = "eu-west-1";
 const KEY_ID = "alias/test-imported-hashing-key";
@@ -33,12 +37,11 @@ export const handler = async (event: any): Promise<any> => {
     const base64Pdf = body?.base64Pdf;
 
     if (base64Pdf) {
+      console.log({ base64Pdf });
       // Decode base64
       const pdfBuffer = Buffer.from(base64Pdf, "base64");
 
-      const data = new PDFParse(pdfBuffer);
-      const text = (await data.getText()).text;
-
+      const text = await extractText(pdfBuffer);
       const billData = parseBill(text);
 
       if (!billData.month || !billData.year) {
@@ -164,6 +167,7 @@ export interface ParsedBill {
   unitsConsumed?: string;
   billBeforeDueNEFT?: string;
   billAfterDueDate?: string;
+  billBeforeDue?: string;
 }
 
 export function parseBill(text: string): ParsedBill {
@@ -224,6 +228,17 @@ export function parseBill(text: string): ParsedBill {
   }
 
   // ===============================
+  // Bill Before Due
+  // ===============================
+  const billBeforeDue = text.match(
+    /Payable\s*by\s*Due\s*Date\(Rs\)\s*:?\s*([\d,]+\.\d{2})/i
+  );
+
+  if (billBeforeDue) {
+    result.billBeforeDue = billBeforeDue[1].replace(/,/g, "");
+  }
+
+  // ===============================
   // Bill Before Due (NEFT/RTGS)
   // ===============================
   const neftMatch = text.match(
@@ -248,3 +263,19 @@ export function parseBill(text: string): ParsedBill {
   return result;
 }
 
+async function extractText(buffer: Buffer): Promise<string> {
+  const inputPath = "/tmp/input.pdf";
+  const outputPath = "/tmp/output.txt";
+
+  writeFileSync(inputPath, buffer);
+
+  // Use the absolute path provided by the layer
+  try {
+    await execAsync(`/opt/bin/pdftotext -layout ${inputPath} ${outputPath}`);
+  } catch (e) {
+    // If /opt/bin fails, try the global path as a backup
+    await execAsync(`pdftotext -layout ${inputPath} ${outputPath}`);
+  }
+
+  return readFileSync(outputPath, "utf-8");
+}
